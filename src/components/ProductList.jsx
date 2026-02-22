@@ -1,14 +1,23 @@
 import React from 'react';
-import ProductCard from './ProductCard';
+import ProductCard from './ProductCard'; // Check this path!
 
-const ProductList = ({ products }) => {
-  // TODO: Check if the product list is empty and display a message if needed
+const ProductList = ({ products, onRemoveProduct }) => {
+  if (!products || products.length === 0) {
+    return <p>No products found.</p>;
+  }
 
   return (
-    <div>
-      {/* TODO: Iterate over the products array and render a ProductCard for each product */}
+    <div className="product-list">
+      {products.map((product) => (
+        <ProductCard 
+          key={product.id} 
+          product={product} 
+          onRemove={onRemoveProduct} 
+        />
+      ))}
     </div>
   );
 };
 
+// CRITICAL: Ensure this line exists!
 export default ProductList;
